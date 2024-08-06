@@ -1,29 +1,31 @@
 import React, { useEffect, useState } from 'react';
+import { useLanguageStore } from '../../store/language';
 
 const Loader: React.FC = () => {
 
-    const [loadingText, setLoadingText] = useState<string>('Chargement');
+    const { currentLanguage } = useLanguageStore();
+    const [loadingText, setLoadingText] = useState<string>(currentLanguage.loader.main);
 
     useEffect(() => {
         const interval = setInterval(() => {
             setLoadingText((prev) => {
-                if (prev.length < 13) {
+                if (prev.length < currentLanguage.loader.main.length + 3) {
                     return prev + '.';
                 } else {
-                    return 'Chargement';
+                    return currentLanguage.loader.main;
                 }
             });
         }, 1000);
 
         return () => clearInterval(interval);
-    }, []);
+    }, [currentLanguage]);
 
     return (
 
         <div className="flex flex-col justify-center items-center pt-25vh">
             <svg
                 aria-hidden="true"
-                className="w-24 h-24 text-slate-100 animate-spin dark:text-slate-900 fill-slate-100 mb-4"
+                className="w-24 h-24 text-slate-100 dark:text-slate-900 animate-spin fill-slate-900 dark:fill-slate-100 mb-4"
                 viewBox="0 0 100 101"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
@@ -37,7 +39,7 @@ const Loader: React.FC = () => {
                     fill="currentFill"
                 />
             </svg>
-            <span className="text-xl text-slate-700">{loadingText}</span>
+            <span className="text-xl text-slate-900 dark:text-slate-100">{loadingText}</span>
         </div>
 
 

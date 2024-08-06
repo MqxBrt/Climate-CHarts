@@ -5,7 +5,7 @@ import TabsPanel from './components/tabs/TabsPanel';
 
 const App: React.FC = () => {
     return (
-        <div className="flex flex-col min-h-screen bg-slate-100">
+        <div className="flex flex-col min-h-screen bg-slate-100 dark:bg-slate-900">
             <Header />
             <Navbar />
             <main className="flex-grow">

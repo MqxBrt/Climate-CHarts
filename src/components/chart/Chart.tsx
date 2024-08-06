@@ -6,6 +6,7 @@ import { IRow, loadCsvFile } from '../../utils/csv';
 import Loader from '../common/Loader';
 import Error from '../common/Error';
 import { useCacheStore } from '../../store/cache';
+import { useThemeStore } from '../../store/theme';
 
 ChartJS.register(CategoryScale, LinearScale, LineElement, PointElement, Tooltip, Legend, TimeScale);
 
@@ -25,10 +26,13 @@ const Chart: React.FC<IProps> = ({ csvPath, separator, label, borderColor, backg
     const [error, setError] = useState<boolean>(false);
     const [maxPoints, setMaxPoints] = useState<number>(5000);
     const [isResponsive, setIsResponsive] = useState<boolean>(window.innerWidth > 1024);
+    const [pointRadius, setPointRadius] = useState<number>(isResponsive ? 2 : 1);
     const [canvasHeight, setCanvasHeight] = useState<number | undefined>(window.innerWidth > 1024 ? undefined : 450);
 
     const cachedData = useCacheStore(state => state.getData(csvPath));
     const setCachedData = useCacheStore(state => state.setData);
+    const { selectedTheme } = useThemeStore();
+    const [activeColor, setActiveColor] = useState<string>(selectedTheme === 'light' ? '#0f172a' : '#f1f5f9');
 
     const downsampleData = (data: IRow[], maxPoints: number): IRow[] => {
         if (data.length <= maxPoints) return data;
@@ -93,6 +97,22 @@ const Chart: React.FC<IProps> = ({ csvPath, separator, label, borderColor, backg
         };
     }, []);
 
+    useEffect(() => {
+        const changeSize = () => {
+            setPointRadius(isResponsive ? 2 : 1);
+        }
+
+        changeSize();
+    }, [selectedTheme]);
+
+    useEffect(() => {
+        const changeColor = () => {
+            setActiveColor(selectedTheme === 'light' ? '#0f172a' : '#f1f5f9');
+        }
+
+        changeColor();
+    }, [selectedTheme]);
+
     const chartData = {
         labels: data.map(row => new Date(row.date)),
         datasets: [
@@ -106,7 +126,7 @@ const Chart: React.FC<IProps> = ({ csvPath, separator, label, borderColor, backg
                 backgroundColor,
                 fill: false,
                 borderWidth: 1,
-                pointRadius: 2,
+                pointRadius: pointRadius,
                 pointHoverRadius: 4,
             }
         ]
@@ -137,32 +157,40 @@ const Chart: React.FC<IProps> = ({ csvPath, separator, label, borderColor, backg
                                             year: 'yyyy'
                                         }
                                     },
+                                    grid: {
+                                        color: activeColor,
+                                        lineWidth: 1
+                                    },
                                     title: {
                                         display: true,
                                         text: 'Date',
-                                        color: '#020617'
+                                        color: activeColor
                                     },
                                     ticks: {
                                         autoSkip: true,
                                         maxTicksLimit: 10,
-                                        color: '#020617'
+                                        color: activeColor
                                     }
                                 },
                                 y: {
+                                    grid: {
+                                        color: activeColor,
+                                        lineWidth: 1
+                                    },
                                     title: {
                                         display: true,
                                         text,
-                                        color: '#020617'
+                                        color: activeColor
                                     },
                                     ticks: {
-                                        color: '#020617'
+                                        color: activeColor
                                     }
                                 }
                             },
                             plugins: {
                                 legend: {
                                     labels: {
-                                        color: '#020617'
+                                        color: activeColor
                                     }
                                 },
                                 tooltip: {

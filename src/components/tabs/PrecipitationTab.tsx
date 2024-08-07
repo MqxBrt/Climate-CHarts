@@ -2,6 +2,7 @@ import React from 'react';
 import Chart from '../chart/Chart';
 import { useLanguageStore } from '../../store/language';
 import { useThemeStore } from '../../store/theme';
+import PrecipitationCsv from '../../../public/assets/data/precipitation.csv';
 
 const PrecipitationTab: React.FC = () => {
 
@@ -10,7 +11,7 @@ const PrecipitationTab: React.FC = () => {
 
     return (
         <Chart
-            csvPath="/assets/data/precipitation.csv"
+            csvPath={PrecipitationCsv}
             separator=','
             label={currentLanguage.precipitationTab.label}
             borderColor={`${selectedTheme === 'light' ? 'rgba(100, 116, 139, 1)' : 'rgba(148, 163, 184, 1)'}`}

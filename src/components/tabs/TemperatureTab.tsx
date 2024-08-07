@@ -2,6 +2,7 @@ import React from 'react';
 import Chart from '../chart/Chart';
 import { useLanguageStore } from '../../store/language';
 import { useThemeStore } from '../../store/theme';
+import TemperatureCsv from '../../../public/assets/data/temperature.csv';
 
 const TemperatureTab: React.FC = () => {
 
@@ -10,7 +11,7 @@ const TemperatureTab: React.FC = () => {
 
     return (
         <Chart
-            csvPath="/assets/data/temperature.csv"
+            csvPath={TemperatureCsv}
             separator=';'
             label={currentLanguage.temperatureTab.label}
             borderColor={`${selectedTheme === 'light' ? 'rgba(2, 132, 199, 1)' : 'rgba(56, 189, 248, 1)'}`}

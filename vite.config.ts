@@ -7,5 +7,9 @@ export default defineConfig({
         host: true,
         port: 3000,
     },
-    base: '/Climate-Charts/'
+    base: '/Climate-Charts/',
+    assetsInclude: [
+        '**/*.csv'
+    ],
+    publicDir: "assets"
 });

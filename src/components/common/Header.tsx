@@ -25,16 +25,27 @@ const Header: React.FC = () => {
         <header className="relative h-[18vh] bg-slate-100 dark:bg-slate-800">
             <div
                 className={`absolute inset-0 bg-cover bg-center transition-opacity duration-500 ${selectedTab === 'temperature' ? 'opacity-100' : 'opacity-0'}`}
-                style={{ backgroundImage: "url('/assets/images/sun.webp')" }}
+                style={{
+                    backgroundImage: selectedTheme === 'light' ? "url('/assets/images/sun.webp')" : "url('/assets/images/stars.webp')"
+                }}
             ></div>
             <div
                 className={`absolute inset-0 bg-cover bg-center transition-opacity duration-500 ${selectedTab === 'temperature' ? 'opacity-0' : 'opacity-100'}`}
-                style={{ backgroundImage: "url('/assets/images/clouds.webp')" }}
+                style={{
+                    backgroundImage: selectedTheme === 'light' ? "url('/assets/images/clouds.webp')" : "url('/assets/images/lightning.webp')"
+                }}
             ></div>
             <div className="relative flex items-center justify-center h-full z-10">
                 <div className="flex flex-col items-center justify-center w-full sm:flex-row sm:justify-center">
-                    <div className="flex flex-col items-center justify-center w-full sm:w-auto sm:h-full">
-                        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 dark:text-slate-100 border-4 border-slate-900 dark:border-slate-100 p-2 bg-slate-100 dark:bg-slate-900 rounded-lg shadow-lg select-none">
+                    <div className="flex flex-row items-center justify-center w-full sm:w-auto sm:h-full select-none">
+                        <img
+                            src="/assets/images/logo.png"
+                            className="h-28 w-28 sm:h-36 sm:w-36 md:h-38 md:w-38 lg:h-40 lg:w-40 object-contain select-none cursor-default"
+                            draggable="false"
+                        />
+                    </div>
+                    <div className="hidden sm:flex sm:flex-col items-center justify-center w-full sm:w-auto">
+                        <h1 className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl font-bold text-slate-900 p-2 select-none text-shadow-outline">
                             Climate Charts
                         </h1>
                     </div>

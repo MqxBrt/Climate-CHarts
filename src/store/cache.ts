@@ -6,16 +6,16 @@ interface ICacheState {
     getData: (csvPath: string) => any | null;
 }
 
-export const useCacheStore = create<ICacheState>(set => ({
+export const useCacheStore = create<ICacheState>((set, get) => ({
     data: null,
-    setData: (csvPath, data) => set(state => ({
+    setData: (csvPath, data) => set((state) => ({
         data: {
             ...state.data,
             [csvPath]: data
         }
     })),
     getData: (csvPath) => {
-        const state = useCacheStore.getState();
+        const state = get();
         return state.data ? state.data[csvPath] : null;
     }
 }));

@@ -1,30 +1,59 @@
-# React + TypeScript + Vite
+# Climate Charts 🌤
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Climate Charts is a React application built with `pnpm`, `Vite`, `TypeScript`, and `Tailwind CSS`. It is designed to visualize temperature and precipitation data from CSV files.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Active Tab Persistence:** Remember and restore the last active tab when the user revisits the application.
+- **Responsive Design:** Adjusts seamlessly to various screen sizes and devices for optimal user experience.
+- **Cache System:** Optimize performance with built-in caching.
+- **Language Toggle:** Switch between English and French for user interface.
+- **Theme Switcher:** Toggle between light and dark modes for better user experience.
 
-## Expanding the ESLint configuration
+## Installation
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+To run the project locally, please follow the steps below ([Docker](https://www.docker.com/) is required).
 
-- Configure the top-level `parserOptions` property like this:
+### Clone the Project
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json', './tsconfig.app.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+```bash
+git clone https://github.com/MqxBrt/Climate-Charts
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+### Navigate to the Project Directory
+
+```bash
+cd climate-charts
+```
+
+### Build the Docker Image
+
+```bash
+docker compose build
+```
+### Start the Docker Container
+
+```bash
+docker compose up
+```
+
+Finally, open [localhost:3000](http://localhost:3000/) in your web browser.
+
+## Dependencies
+
+The project uses the following dependencies:
+
+- **React:** 18.3.1
+- **Chart.js:** 4.4.3
+- **chartjs-adapter-date-fns:** 3.0.0
+- **papaparse:** 5.4.1
+- **react-chartjs-2:** 5.2.0
+- **zustand:** 4.5.4
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](https://github.com/MqxBrt/Climate-Charts/blob/master/LICENSE) file for more details.
+
+## Author
+
+Developed by BOURRET Maxime.

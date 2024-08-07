@@ -1,13 +1,16 @@
 {
     "name": "climate-charts",
     "private": true,
-    "version": "0.0.0",
+    "version": "1.0.0",
     "type": "module",
+    "homepage": "https://mqxbrt.github.io/climate-charts",
     "scripts": {
         "dev": "vite",
         "build": "tsc -b && vite build",
         "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-        "preview": "vite preview"
+        "preview": "vite preview",
+        "predeploy": "pnpm build",
+        "gh-pages-deploy": "gh-pages -d dist"
     },
     "dependencies": {
         "chart.js": "4.4.3",
@@ -29,6 +32,7 @@
         "eslint": "8.57.0",
         "eslint-plugin-react-hooks": "4.6.2",
         "eslint-plugin-react-refresh": "0.4.7",
+        "gh-pages": "6.1.1",
         "postcss": "8.4.40",
         "tailwindcss": "3.4.7",
         "typescript": "5.2.2",

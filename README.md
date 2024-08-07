@@ -10,6 +10,10 @@ Climate Charts is a React application built with `pnpm`, `Vite`, `TypeScript`, a
 - **Language Toggle:** Switch between English and French for user interface.
 - **Theme Switcher:** Toggle between light and dark modes for better user experience.
 
+## Deployment
+
+This project is hosted on GitHub Pages at the following URL: [https://mqxbrt.github.io/climate-charts](https://mqxbrt.github.io/climate-charts)
+
 ## Installation
 
 To run the project locally, please follow the steps below ([Docker](https://www.docker.com/) is required).

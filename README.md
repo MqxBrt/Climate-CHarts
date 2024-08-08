@@ -12,7 +12,7 @@ Climate Charts is a React application built with `pnpm`, `Vite`, `TypeScript`, a
 
 ## Deployment
 
-This project is hosted on GitHub Pages at the following URL: [https://mqxbrt.github.io/climate-charts](https://mqxbrt.github.io/climate-charts)
+This project is hosted on GitHub Pages at the following URL: [https://mqxbrt.github.io/Climate-Charts](https://mqxbrt.github.io/Climate-Charts)
 
 ## Installation
 

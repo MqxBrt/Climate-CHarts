@@ -27,7 +27,6 @@ const Chart: React.FC<IProps> = ({ csvPath, separator, label, borderColor, backg
     const [maxPoints, setMaxPoints] = useState<number>(5000);
     const [isResponsive, setIsResponsive] = useState<boolean>(window.innerWidth > 1024);
     const [pointRadius, setPointRadius] = useState<number>(isResponsive ? 2 : 1);
-    const [canvasHeight, setCanvasHeight] = useState<number | undefined>(window.innerWidth > 1024 ? undefined : 450);
 
     const cachedData = useCacheStore(state => state.getData(csvPath));
     const setCachedData = useCacheStore(state => state.setData);
@@ -87,7 +86,6 @@ const Chart: React.FC<IProps> = ({ csvPath, separator, label, borderColor, backg
         const handleResize = () => {
             const width = window.innerWidth;
             setIsResponsive(width > 1024);
-            setCanvasHeight(width > 1024 ? undefined : 450);
         };
 
         window.addEventListener('resize', handleResize);
@@ -133,16 +131,16 @@ const Chart: React.FC<IProps> = ({ csvPath, separator, label, borderColor, backg
     };
 
     return (
-        <div className={`flex flex-col px-2 ${isResponsive && 'h-[65vh]'}`}>
+        <div className='flex flex-col h-[65vh]'>
             {loading ? (
                 <Loader />
             ) : error ? (
                 <Error />
             ) : (
-                <div className="flex justify-center items-center overflow-x-scroll">
+                <div className={`flex justify-center items-center box-border h-full ${isResponsive ? 'px-12' : 'px-2'}`}>
                     <Line
                         data={chartData}
-                        height={canvasHeight}
+                        height="100%"
                         options={{
                             responsive: true,
                             maintainAspectRatio: isResponsive,
@@ -189,9 +187,7 @@ const Chart: React.FC<IProps> = ({ csvPath, separator, label, borderColor, backg
                             },
                             plugins: {
                                 legend: {
-                                    labels: {
-                                        color: activeColor
-                                    }
+                                    display: false,
                                 },
                                 tooltip: {
                                     callbacks: {

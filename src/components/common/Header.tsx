@@ -26,6 +26,10 @@ const Header: React.FC = () => {
         document.documentElement.classList.toggle('dark', selectedTheme === 'dark');
     }, [selectedTheme]);
 
+    useEffect(() => {
+        document.documentElement.setAttribute('lang', selectedLanguage);
+    }, [selectedLanguage]);
+
     return (
         <header className="relative h-[18vh] bg-slate-100 dark:bg-slate-800">
             <div
@@ -59,7 +63,7 @@ const Header: React.FC = () => {
                     <div>
                         <button
                             onClick={toggleLanguage}
-                            className="p-2 bg-slate-100 dark:bg-slate-900 rounded-lg cursor-pointer shadow-lg flex items-center justify-center text-lg w-10 h-10"
+                            className="p-2 bg-slate-100 dark:bg-slate-900 text-slate-900 dark:text-slate-100 rounded-lg cursor-pointer shadow-lg flex items-center justify-center text-lg w-10 h-10"
                         >
                             {selectedLanguage === 'fr' ? '🇫🇷' : '🇬🇧'}
                         </button>
@@ -67,7 +71,7 @@ const Header: React.FC = () => {
                     <div>
                         <button
                             onClick={toggleDarkMode}
-                            className="p-2 bg-slate-100 dark:bg-slate-900 rounded-lg cursor-pointer shadow-lg flex items-center justify-center text-lg w-10 h-10"
+                            className="p-2 bg-slate-100 dark:bg-slate-900 text-slate-900 dark:text-slate-100 rounded-lg cursor-pointer shadow-lg flex items-center justify-center text-lg w-10 h-10"
                         >
                             {selectedTheme === 'dark' ? '🌙' : '☀️'}
                         </button>
